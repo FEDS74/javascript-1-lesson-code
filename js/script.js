@@ -17,7 +17,7 @@ function loadGames(json) {
         const platforms = games[i].platforms;
         const platformsHTML = makePlatforms(platforms);
 
-        const details = `<div class="col-sm-6 col-md-4 col-lg-3">                
+        const details = `<div class="col-sm-6 col-md-4 col-lg-3">
                             <div class="card">
                                 <div class="image" style="background-image: url(${games[i].background_image});"></div>
                                 <div class="details">
@@ -39,7 +39,13 @@ function makeGenres(genreArray) {
     let genreHTML = "";
 
     genreArray.forEach(function(genre) {
-        genreHTML += `<a class="genre">${genre.name}</a>`;
+      let activeClass = "";
+
+      if (genres === genre.slug){
+        activeClass = "active";
+      }
+        genreHTML += `<a class="genre ${activeClass}" href="index.html?genres=${genre.slug}">${genre.name}</a>`;
+
     });
 
     return genreHTML;
